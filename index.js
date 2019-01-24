@@ -48,12 +48,12 @@ module.exports = function create (opts) {
     if (!fs.existsSync(iconPath)) iconPath = path.join(__dirname, 'example', 'IconTemplate.png') // default cat icon
 
     var cachedBounds // cachedBounds are needed for double-clicked event
-    var defaultClickEvent = (opts.showOnLeftClick == null) && (opts.showOnRightClick == null)
+    var defaultClickEvent = (opts.showOnLeftClick == null) && (opts.showOnRightClick == null) && (opts.showOnDoubleClick == null)
 
     menubar.tray = opts.tray || new Tray(iconPath)
     if (opts.showOnLeftClick || defaultClickEvent) menubar.tray.on('click', clicked)
     if (opts.showOnRightClick) menubar.tray.on('right-click', clicked)
-    menubar.tray.on('double-click', clicked)
+    if (opts.showOnDoubleClick) menubar.tray.on('double-click', clicked)
     menubar.tray.setToolTip(opts.tooltip)
 
     var supportsTrayHighlightState = false
