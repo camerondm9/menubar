@@ -96,7 +96,7 @@ module.exports = function create (opts) {
         menubar.window.setVisibleOnAllWorkspaces(true)
       }
 
-      menubar.window.on('close', windowClear)
+      menubar.window.on('closed', windowClear)
       menubar.window.loadURL(opts.index)
       menubar.emit('after-create-window')
     }
